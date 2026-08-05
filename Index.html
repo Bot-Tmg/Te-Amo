@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para ti ❤️</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      max-width: 400px;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+    .slide.active { display: block; }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      font-size: 20px;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+    .btn:hover { background: white; }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    .message {
+      font-size: 1.1rem;
+      color: #4a4a4a;
+      min-height: 50px;
+      margin-top: 10px;
+    }
+    .heart { color: #e74c3c; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="carousel-container">
+      <!-- Fotos (Asegúrate de guardar tus fotos con estos nombres o cámbiados aquí) -->
+      <div class="slide active">
+        <img src="foto1.jpg" alt="Foto 1">
+      </div>
+      <div class="slide">
+        <img src="foto2.jpg" alt="Foto 2">
+      </div>
+      <div class="slide">
+        <img src="foto3.jpg" alt="Foto 3">
+      </div>
+
+      <button class="btn prev" onclick="changeSlide(-1)">&#10094;</button>
+      <button class="btn next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- Mensajes de cada foto -->
+    <div class="message" id="caption">Nuestros mejores momentos <span class="heart">❤️</span></div>
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    
+    // Edita aquí los mensajes que quieres que aparezcan con cada foto:
+    const captions = [
+      "Cada momento a tu lado es especial <span class='heart'>❤️</span>",
+      "Gracias por hacerme tan feliz todos los días ✨",
+      "¡Te amo muchísimo! 💖"
+    ];
+
+    function changeSlide(direction) {
+      slides[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + direction + slides.length) % slides.length;
+      slides[currentIndex].classList.add('active');
+      document.getElementById('caption').innerHTML = captions[currentIndex];
+    }
+  </script>
+</body>
+</html>
